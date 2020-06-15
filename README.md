@@ -21,17 +21,17 @@
 ---
 
 ## Snapshot
-<img src="dashboard-img.JPG" alt="BurgerMeister App Image" style="border-radius: 20px" />
+<img src="dashboard-img.JPG" alt="workout-tracker App Image" style="border-radius: 20px" />
 
 <br/>
 <br/>
 
-<img src="addexercise-img.JPG" alt="BurgerMeister App Image" style="border-radius: 20px" />
+<img src="addexercise-img.JPG" alt="workout-tracker App Image" style="border-radius: 20px" />
 
 <br/>
 <br/>
 
-<img src="lastworkout-img.JPG" alt="BurgerMeister App Image" style="border-radius: 20px" />
+<img src="lastworkout-img.JPG" alt="workout-tracker App Image" style="border-radius: 20px" />
 
 <br/>
 <br/>
