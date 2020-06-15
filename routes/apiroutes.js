@@ -45,7 +45,7 @@ module.exports = function (app) {
             });
     });
 
-    //DELETE route finds a workout by id and removes it
+    // DELETE route finds a workout by id and removes it
     app.delete("/api/workouts/:id", ({ body }, res) => {
         console.log(body)
         Workout.findByIdAndDelete({_id: body.id })
