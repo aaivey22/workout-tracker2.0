@@ -1,14 +1,14 @@
 const db = require("../models");
+const app = require("express").Router();
 
-
-module.exports = function(app) {
+module.exports = function (app) {
 
     // GET app retreives exercise data displayed on /stats page 
     app.get("/api/workouts/range", (req, res) => {
-        db.Workout.find({})
+        db.Workout.find({}).limit(7)
             // parses and sends it as an array of objects to the front end
-            .then(workout => {
-                res.json(workout);
+            .then(data => {
+                res.json(data);
             })
             .catch(err => {
                 res.json(err);
@@ -17,31 +17,40 @@ module.exports = function(app) {
 
     app.post("/api/workouts", (req, res) => {
         db.Workout.create({})
-            .then(res => {
-                res.json(res);
+            .then(dbWorkout => {
+                res.json(dbWorkout);
             })
             .catch(err => {
-                res.status(400).json(err);
+                res.json(err);
             });
     });
 
-    // app.get("/api/workouts/:id", function(req, res) {
-    //     db.Workout.findById(req.params.id).then(function(data) {
-    //       res.json(data);
-    //     });
-    //   });
+    app.get("/api/workouts", (req, res) => {
+        db.Workout.find()
+            .then(data => {
+                res.json(data);
+            })
+            .catch(err => {
+                res.json(err);
+            })
+    });
 
-    // app.put("/api/workouts/:id", (req, res) => {
-    //     db.Workout.updateOne({ _id: req.params.id },
-    //     { exercises: req.body })
-    //     .then(data => {
-    //         res.json(data);
-    //     })
-    //     .catch(err => {
-    //         res.status(400).json(err);
-    //     });
-    // })
+    app.put("/api/workouts/:id", ({ body, params }, res) => {
+        db.Workout.findByIdAndUpdate({ _id: params.id },
+            {$push: {exercises: body }})
+            .then(data => {
+                res.json(data);
+            })
+    })
 
+    app.delete("/api/workouts/:id", ({ body }, res) => {
+        console.log(body)
+        db.Workout.findByIdAndDelete({_id: body.id })
+        .then(data => {
+            res.json(data);
+        })
+
+    })
 };
 
 
